@@ -1,0 +1,85 @@
+.container {
+  width: 50%;
+  height: 50%;
+  text-align: center;
+  display: grid;
+  gap: 10px;
+  place-content: center;
+  justify-items: center;
+}
+
+.pulse-effect {
+  color: red;
+}
+button {
+  padding: 10px;
+  margin-left: 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+  width: 100%;
+  cursor: pointer;
+  background-color: grey;
+  color: #fff;
+}
+
+.pulse-effect {
+  animation: pulse 1s linear infinite;
+}
+
+input {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  background: lightgray;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+@media (min-width: 701px) {
+  input:last-of-type {
+    margin-left: 10px;
+  }
+
+  input {
+    margin-bottom: 10px;
+  }
+
+  .timeLeft {
+    font-size: 90px;
+  }
+
+  .pulse-effect {
+    font-size: 80px;
+  }
+}
+
+@media (max-width: 700px) {
+  input {
+    margin-bottom: 5px;
+    width: 100%;
+  }
+  button {
+    width: 100%;
+    margin-left: 10px;
+  }
+
+  .timeLeft {
+    font-size: 60px;
+  }
+
+  .pulse-effect {
+    font-size: 45px;
+  }
+}
