@@ -1,3 +1,7 @@
+.weblink {
+  margin-top: 20px;
+}
+
 @media (max-width: 700px) {
   .clock {
     font-size: 30px;

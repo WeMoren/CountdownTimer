@@ -47,7 +47,7 @@ const App = () => {
         transition: "background 1.5s ease-in-out",
       }}
     >
-      <h2 style={{ marginBottom: "50px", fontSize: "4vw" }}></h2>
+      <h2></h2>
       <CountdownTimer />
       <Clock />
     </div>
