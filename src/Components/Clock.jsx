@@ -27,7 +27,7 @@ const Clock = () => {
     //clean up
     return () => clearInterval(clockInterval);
   });
-  const repoUrl = "https://www.github.com/WeMoren/CountdownTimer";
+
   return (
     <div>
       <p className="clock">{liveTime}</p>

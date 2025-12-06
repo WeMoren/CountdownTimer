@@ -7,6 +7,7 @@ const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [showInput, setShowInput] = useState(true);
+  const [initialTime, setInitialTime] = useState(0);
   const timerRef = useRef(null);
 
   // UseEffect to handle countdown
@@ -62,12 +63,26 @@ const CountdownTimer = () => {
 
       // Enter(start)
       if (key === "enter") {
-        setIsRunning(handleStart);
+        handleStart();
       }
 
       // Space toggles Start/Pause
-      if (key === "") {
+      if (key === " ") {
         setIsRunning((prev) => !prev);
+      }
+
+      // Arrow up add 1 minute
+      if (key === "arrowup") {
+        setMinutes((m) => Number(m) + 1);
+        setInitialTime((t) => t + 60);
+        setTimeLeft((t) => t + 60);
+      }
+
+      // Arrow down subtr 1 minute
+      if (key === "arrowdown") {
+        setMinutes((m) => Math.max(0, Number(m) - 1));
+        setInitialTime((t) => Math.max(0, t - 60));
+        setTimeLeft((t) => Math.max(0, t - 60));
       }
     };
     window.addEventListener("keydown", handleKey);
