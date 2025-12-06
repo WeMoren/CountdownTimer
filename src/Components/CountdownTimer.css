@@ -1,6 +1,6 @@
 .container {
-  width: 50%;
-  height: 50%;
+  width: 100vw;
+  height: 50vh;
   text-align: center;
   display: grid;
   gap: 10px;
@@ -8,12 +8,23 @@
   justify-items: center;
 }
 
+.input-btn-container {
+  width: 50vw;
+  padding: 40px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+}
+
+.timeLeft {
+  padding: 5px;
+}
+
 .pulse-effect {
   color: red;
 }
 button {
   padding: 10px;
-  margin-left: 5px;
   border-radius: 5px;
   border: none;
   font-size: 20px;
@@ -28,6 +39,7 @@ button {
 }
 
 input {
+  width: 100%;
   outline: none;
   border: none;
   border-radius: 5px;
@@ -48,16 +60,12 @@ input {
 }
 
 @media (min-width: 701px) {
-  input:last-of-type {
-    margin-left: 10px;
-  }
-
   input {
     margin-bottom: 10px;
   }
 
   .timeLeft {
-    font-size: 150px;
+    font-size: 200px;
   }
 
   .pulse-effect {
@@ -66,13 +74,19 @@ input {
 }
 
 @media (max-width: 700px) {
+  .input-btn-container {
+    width: 100vw;
+    padding: 40px;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+  }
+
   input {
     margin-bottom: 5px;
-    width: 100%;
   }
   button {
     width: 100%;
-    margin-left: 10px;
   }
 
   .timeLeft {

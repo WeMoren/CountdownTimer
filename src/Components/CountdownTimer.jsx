@@ -132,7 +132,7 @@ const CountdownTimer = () => {
         <h1 className="pulse-effect">TIME UP!</h1>
       ) : showInput ? (
         // show input fields before time starts
-        <div>
+        <div className="input-btn-container">
           <input
             type="number"
             placeholder="Minutes"

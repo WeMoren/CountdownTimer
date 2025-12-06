@@ -32,7 +32,7 @@ const Clock = () => {
     <div>
       <p className="clock">{liveTime}</p>
       <p className="weblink">
-        &copy; {new Date().getFullYear()} Countdown. All rights reserved -
+        &copy; {new Date().getFullYear()} Countdown Timer. All rights reserved -
         WeMoren
       </p>
     </div>
