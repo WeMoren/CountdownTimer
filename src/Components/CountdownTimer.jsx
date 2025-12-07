@@ -44,11 +44,16 @@ const CountdownTimer = () => {
     const handleKey = (e) => {
       const key = e.key.toLowerCase();
 
-      if (document.activeElement.tagName === "INPUT" && e.key !== "Enter")
+      if (
+        document.activeElement.tagName === "INPUT" &&
+        e.key !== "Enter" &&
+        e.key !== "s"
+      )
         return;
 
       // Start(s)
       if (key === "s") {
+        handleStart();
         setIsRunning(true);
       }
 
