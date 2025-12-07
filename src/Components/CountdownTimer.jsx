@@ -59,7 +59,7 @@ const CountdownTimer = () => {
 
       // Pause(p)
       if (key === "p") {
-        setIsRunning(false);
+        setIsRunning((prev) => !prev);
       }
 
       // Reset(r)
