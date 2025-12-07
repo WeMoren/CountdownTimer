@@ -35,7 +35,7 @@ button {
 }
 
 .pulse-effect {
-  animation: pulse 1s linear infinite;
+  animation: pulse 1s linear;
 }
 
 input {
@@ -47,15 +47,20 @@ input {
   background: lightgray;
 }
 
+.redFlash {
+  color: red;
+  animation: pulse 1s linear infinite;
+}
+
 @keyframes pulse {
   0% {
-    transform: scale(1.2);
-  }
-  50% {
     transform: scale(1);
   }
+  50% {
+    transform: scale(1.04);
+  }
   100% {
-    transform: scale(1.2);
+    transform: scale();
   }
 }
 
@@ -69,7 +74,7 @@ input {
   }
 
   .pulse-effect {
-    font-size: 80px;
+    font-size: 150px;
   }
 }
 
@@ -90,10 +95,20 @@ input {
   }
 
   .timeLeft {
-    font-size: 60px;
+    font-size: 100px;
   }
 
   .pulse-effect {
     font-size: 45px;
+  }
+}
+
+@media (max-width: 400px) {
+  .timeLeft {
+    font-size: 80px;
+  }
+
+  .pulse-effect {
+    font-size: 35px;
   }
 }

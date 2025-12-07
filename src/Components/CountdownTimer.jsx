@@ -2,8 +2,8 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import "./CountdownTimer.css";
 const CountdownTimer = () => {
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState("");
+  const [seconds, setSeconds] = useState("");
   const [timeLeft, setTimeLeft] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [showInput, setShowInput] = useState(true);
@@ -33,8 +33,8 @@ const CountdownTimer = () => {
     clearInterval(timerRef.current);
     setIsRunning(false);
     setTimeLeft(0);
-    setMinutes(0);
-    setSeconds(0);
+    setMinutes("");
+    setSeconds("");
     setShowInput(true); //show input fields again
   };
 
@@ -44,7 +44,8 @@ const CountdownTimer = () => {
     const handleKey = (e) => {
       const key = e.key.toLowerCase();
 
-      if (document.activeElement.tagName === "INPUT") return;
+      if (document.activeElement.tagName === "INPUT" && e.key !== "Enter")
+        return;
 
       // Start(s)
       if (key === "s") {
@@ -126,7 +127,9 @@ const CountdownTimer = () => {
 
       {timeLeft > 0 ? (
         //if time left, show countdown
-        <h1 className="timeLeft">{formatTime(timeLeft)}</h1>
+        <h1 className={`timeLeft ${timeLeft <= 60 ? "redFlash" : ""}`}>
+          {formatTime(timeLeft)}
+        </h1>
       ) : isRunning ? (
         // if time is zero but timer was running, show TIME UP in red
         <h1 className="pulse-effect">TIME UP!</h1>
