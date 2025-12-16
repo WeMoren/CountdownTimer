@@ -14,6 +14,7 @@ const HelpModal = ({ onClose, show }) => {
           <li><kbd>R</kbd> - Resets timer</li>
           <li><kbd>↑</kbd> / <kbd>↓</kbd> - Adjusts time</li>
           <li><kbd>?</kbd>  - Open / closes this help</li>
+          <li><kbd>F11</kbd>  - Displays timer on fullscreen / exits fullscreen</li>
           <li><kbd>Esc</kbd> - Close help</li>
         </ul>
       </div>
