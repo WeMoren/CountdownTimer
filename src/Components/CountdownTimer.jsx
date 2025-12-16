@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
+import HelpModal from "./HelpModal"
 import "./CountdownTimer.css";
 const CountdownTimer = () => {
   const [minutes, setMinutes] = useState("");
@@ -8,6 +9,8 @@ const CountdownTimer = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [showInput, setShowInput] = useState(true);
   const [initialTime, setInitialTime] = useState(0);
+  const [showHelp, setShowHelp] = useState(true);
+  const [modalVisible, setModalVisible] = useState(true)
   const timerRef = useRef(null);
 
   // UseEffect to handle countdown
@@ -16,7 +19,7 @@ const CountdownTimer = () => {
       timerRef.current = setInterval(() => {
         setTimeLeft((prev) => prev - 1);
       }, 1000);
-      //       setShowInput(false); // Hides input field when timer starts
+      //      setShowInput(false); // Hides input field when timer starts
     }
 
     return () => clearInterval(timerRef.current);
@@ -26,6 +29,8 @@ const CountdownTimer = () => {
   const handleStart = () => {
     setTimeLeft(minutes * 60 + seconds); //minutes converted to seconds
     setIsRunning(true); //starting the countdown
+    setShowHelp(false)
+    setModalVisible(false)
   };
 
   //Resetting the timer
@@ -36,6 +41,7 @@ const CountdownTimer = () => {
     setMinutes("");
     setSeconds("");
     setShowInput(true); //show input fields again
+    
   };
 
   //useEffect to handle keyboard shortcuts
@@ -43,7 +49,8 @@ const CountdownTimer = () => {
     // If user is typing into input, ignore shortcuts
     const handleKey = (e) => {
       const key = e.key.toLowerCase();
-
+if (key === "?" || key === "/") setShowHelp((show) => !show); 
+if (key === "escape") setShowHelp(false);
       if (
         document.activeElement.tagName === "INPUT" &&
         e.key !== "Enter" &&
@@ -95,13 +102,6 @@ const CountdownTimer = () => {
     return () => window.removeEventListener("keydown", handleKey);
   });
 
-  //   useEffect(() => {
-  //     if (isRunning) {
-  //       const element = document.documentElement;
-  //       element.requestFullscreen?.();
-  //     }
-  //   }, [isRunning]);
-
   const formatTime = (seconds) => {
     const hrs = Math.floor(seconds / 3600);
     const mins = Math.floor((seconds % 3600) / 60);
@@ -113,21 +113,19 @@ const CountdownTimer = () => {
       .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
-  //   const useFullScreen = () => {
-  //     const element = document.documentElement;
-  //     if (element.requestFullscreen) {
-  //       element.requestFullscreen();
-  //     } else if (element.webkitRequestFullscreen) {
-  //       element.webkitRequestFullscreen();
-  //     } else if (element.msRequestFullscreen) {
-  //       element.msRequestFullscreen();
-  //     }
-  //   };
-
-  //   useFullScreen();
-
   return (
     <div className="container">
+
+     {/* Help modal */}
+      {modalVisible && (
+        <HelpModal
+          onClose={() => {
+            setShowHelp(false);
+            setTimeout(() => setModalVisible(false), 300);
+          }}
+          show={showHelp}
+        />
+      )}
       {/* Displaying countdown or TIME UP!*/}
 
       {timeLeft > 0 ? (
@@ -138,11 +136,14 @@ const CountdownTimer = () => {
       ) : isRunning ? (
         // if time is zero but timer was running, show TIME UP in red
         <h1 className="pulse-effect">TIME UP!</h1>
-      ) : showInput ? (
-        // show input fields before time starts
+      ) : (
+
+      
+        
         <div className="input-btn-container">
           <input
             type="number"
+            min={1}
             placeholder="Minutes"
             value={minutes}
             onChange={(e) => setMinutes(Number(e.target.value))}
@@ -151,6 +152,7 @@ const CountdownTimer = () => {
           {/* second input */}
           <input
             type="number"
+            min={1}
             placeholder="Seconds"
             value={seconds}
             onChange={(e) => setSeconds(Number(e.target.value))}
@@ -159,10 +161,11 @@ const CountdownTimer = () => {
           {/* Start button */}
           <button onClick={handleStart}>Start</button>
         </div>
-      ) : null}
+       
+      ) }
 
-      {/* Reset button to show only after timer starts */}
-      {!showInput && <button onClick={handleReset}>Reset</button>}
+
+      
     </div>
   );
 };

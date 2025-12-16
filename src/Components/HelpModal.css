@@ -1,0 +1,84 @@
+.help-modal-overlay {
+  position: fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+opacity:0;
+pointer-events:none;
+transition:opacity 0.3s ease;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content:center;
+  z-index: 1000;
+}
+
+/* Slide-down when active*/
+.help-modal-overlay.slide-down{
+       opacity:1;
+       pointer-events:all;
+}
+
+.help-modal-overlay.slide-up{
+       opacity:0;
+       pointer-events:none;
+}
+
+
+.modal {
+  background: transparent;
+  backdrop-filter:blur(40px);
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border-radius:20px;
+  transform:translateY(-50px);
+  transition:transform 0.3s ease;
+}
+
+
+/*Slide down effect*/
+
+.help-modal-overlay.slide-down .modal{
+transform:translateY(0);
+}
+
+.help-modal-overlay.slide-up .modal{
+transform:translateY(-50px);
+}
+
+
+.modal h2 {
+  font-size: 20px;
+}
+
+.modal > p,
+li {
+  font-size: 10px;
+}
+
+.close-btn {
+  cursor: pointer;
+}
+
+.shortcuts {
+  display: grid;
+  margin-top: 1rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.shortcuts li {
+  margin-bottom: 0.5rem;
+  list-style: none;
+}
+
+kbd {
+  background: #aeabab;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  border: 1px solid #ccc;
+}

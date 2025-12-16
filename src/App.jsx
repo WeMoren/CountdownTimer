@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import CountdownTimer from "./Components/CountdownTimer";
 import Clock from "./Components/Clock";
+import HelpModal from "./Components/HelpModal";
 import "./App.css";
 
 const colors = [
@@ -47,7 +48,7 @@ const App = () => {
         transition: "background 1.5s ease-in-out",
       }}
     >
-      <h2></h2>
+      {/* <HelpModal /> */}
       <CountdownTimer />
       <Clock />
     </div>
